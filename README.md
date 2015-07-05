@@ -6,7 +6,7 @@ public class StompSubscribeTest {
     @Test
     public void testSub() throws Exception {
         StompClientManager stompClientManager = new StompClientManager();
-        stompClientManager.connect("stomp://username:password@10.232.136.85:61613?connectTimeout=3000");
+        stompClientManager.connect("stomp://username:password@host:port?connectTimeout=3000");
         stompClientManager.createConsumer("/topic/logon")
                 .id("wqteam_test")
                 .ackMode(AckMode.AUTO)
@@ -74,7 +74,7 @@ public class StompSenderTest {
     </property>
 </bean>
 
-<bean id="wx2PubMsgListener" class="com.taobao.wangxin.admin.biz.feedback.WX2PublicMsgListener"
+<bean id="wx2PubMsgListener" class="com.ohun.test.WX2PublicMsgListener"
                   init-method="init" destroy-method="destroy">
     <property name="topic" value="/topic/pamsgfromwx"/>
     <property name="clientId" value="wxadmin"/>
