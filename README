@@ -1,1 +1,22 @@
-A stomp client base on netty,see wiki.
+### A stomp client base on netty,see wiki.
+### Subscribe:
+```java
+public class StompSubscribeTest {
+    @Test
+    public void testSub() throws Exception {
+        StompClientManager stompClientManager = new StompClientManager();
+        stompClientManager.connect("stomp://wangxin:wangxin@10.232.136.85:61613?connectTimeout=3000");
+        stompClientManager.createConsumer("/topic/logon")
+                .id("wqteam_test")
+                .ackMode(AckMode.AUTO)
+                .handler(new MessageHandler() {
+                    @Override
+                    public void onMessage(Message message) {
+                        System.out.println(message);
+                    }
+                })
+               .subscribe();
+        LockSupport.park();
+    }
+}
+```
