@@ -6,7 +6,7 @@ public class StompSubscribeTest {
     @Test
     public void testSub() throws Exception {
         StompClientManager stompClientManager = new StompClientManager();
-        stompClientManager.connect("stomp://username:password@host:port?connectTimeout=3000");
+        stompClientManager.connect("stomp://username:password@host:port");
         stompClientManager.createConsumer("/topic/logon")
                 .id("wqteam_test")
                 .ackMode(AckMode.AUTO)
@@ -57,7 +57,8 @@ public class StompSenderTest {
 ```xml
 <bean id="stompClientManager" class="com.ohun.stomp.StompClientManager"
             init-method="start" destroy-method="stop">
-    <!--<property name="uri" value="stomp://username:password@10.232.136.85:61613"/>
+    <!--<property name="uri" 
+    value="stomp://username:password@10.232.136.85:61613?connectTimeout=3000"/>
            两种配置方式是一样的,看个人喜好-->
     <property name="config">
         <bean class="com.ohun.stomp.common.StompConfig">
