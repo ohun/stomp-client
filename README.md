@@ -1,4 +1,4 @@
-## A stomp client base on netty,see wiki.
+## A stomp client base on netty.
 
 ### Subscribe:
 ```java
