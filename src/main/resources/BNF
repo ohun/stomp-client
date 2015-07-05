@@ -1,0 +1,40 @@
+A STOMP session can be more formally described
+using the Backus-Naur Form (BNF) grammar used in HTTP/1.1 RFC 2616.
+
+NULL                = <US-ASCII null (octet 0)>
+LF                  = <US-ASCII line feed (aka newline) (octet 10)>
+CR                  = <US-ASCII carriage return (octet 13)>
+EOL                 = [CR] LF
+OCTET               = <any 8-bit sequence of data>
+
+frame-stream        = 1*frame
+
+frame               = command EOL
+                      *( header EOL )
+                      EOL
+                      *OCTET
+                      NULL
+                      *( EOL )
+
+command             = client-command | server-command
+
+client-command      = "SEND"
+                      | "SUBSCRIBE"
+                      | "UNSUBSCRIBE"
+                      | "BEGIN"
+                      | "COMMIT"
+                      | "ABORT"
+                      | "ACK"
+                      | "NACK"
+                      | "DISCONNECT"
+                      | "CONNECT"
+                      | "STOMP"
+
+server-command      = "CONNECTED"
+                      | "MESSAGE"
+                      | "RECEIPT"
+                      | "ERROR"
+
+header              = header-name ":" header-value
+header-name         = 1*<any OCTET except CR or LF or ":">
+header-value        = *<any OCTET except CR or LF or ":">
